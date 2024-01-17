@@ -10,4 +10,7 @@ public class Endpoints {
 	public static final String APPFLOW_CREATE = "/appflow/create";
 	public static final String APPFLOW_CREATE_NAME ="/appflow/create/{name}";
 	
+	public static final String DEVICE_APPFLOWS = "/device/appflow";
+	public static final String DEVICE_APPFLOWS_CREATE = "/device/appflow/create";
+	
 }

@@ -1,5 +1,8 @@
-package com.hdekker.appflow.domain;
+package com.hdekker.appflow;
 
+import java.time.Duration;
+import java.time.OffsetDateTime;
+import java.time.OffsetTime;
 import java.util.List;
 
 /**
@@ -28,15 +31,23 @@ public class AppFlow {
 		this.name = name;
 	}
 
-	public class WebsiteDisplayConfiguration{
+	public static class WebsiteDisplayConfiguration{
 		
 		String website;
 		Integer displayDuration;
 		
-		public WebsiteDisplayConfiguration(String website, Integer displayDuration) {
+		// TODO could improve this concept
+		// potentially allow windows and frequency.
+		List<OffsetTime> websiteUpdateTime;
+		
+		public WebsiteDisplayConfiguration(
+				String website, 
+				Integer displayDuration,
+				List<OffsetTime> websiteUpdateTime) {
 			super();
 			this.website = website;
 			this.displayDuration = displayDuration;
+			this.websiteUpdateTime = websiteUpdateTime;
 		}
 		public String getWebsite() {
 			return website;
@@ -49,6 +60,12 @@ public class AppFlow {
 		}
 		public void setDisplayDuration(Integer displayDuration) {
 			this.displayDuration = displayDuration;
+		}
+		public List<OffsetTime> getWebsiteUpdateTime() {
+			return websiteUpdateTime;
+		}
+		public void setWebsiteUpdateTime(List<OffsetTime> websiteUpdateTime) {
+			this.websiteUpdateTime = websiteUpdateTime;
 		}
 		
 	}

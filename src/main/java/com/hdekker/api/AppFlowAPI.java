@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hdekker.appflow.domain.AppFlow;
+import com.hdekker.UseCase;
+import com.hdekker.appflow.AppFlow;
 
 import jakarta.websocket.server.PathParam;
 
 @RestController
 @RequestMapping()
+@UseCase(name = "Create an AppFlow")
 public class AppFlowAPI {
 	
 	Logger log = LoggerFactory.getLogger(AppFlowAPI.class);
