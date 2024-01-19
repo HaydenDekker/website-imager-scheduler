@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hdekker.UseCase;
 import com.hdekker.appflow.AppFlow;
 
-import jakarta.websocket.server.PathParam;
-
 @RestController
 @RequestMapping()
 @UseCase(name = "Create an AppFlow")

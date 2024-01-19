@@ -1,4 +1,4 @@
-package com.hdekker.deviceappflows;
+package com.hdekker.flowschedules;
 
 public class DeviceAppflowAssignment {
 
