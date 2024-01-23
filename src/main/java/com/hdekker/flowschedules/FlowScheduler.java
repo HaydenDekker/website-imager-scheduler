@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hdekker.appflow.AppFlow;
+import com.hdekker.domain.AppFlow;
 import com.hdekker.flowschedules.FlowScheduleEventListener.FlowScheduleEvent;
 
 import reactor.core.publisher.Flux;

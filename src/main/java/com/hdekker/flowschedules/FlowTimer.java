@@ -6,7 +6,7 @@ import java.time.OffsetTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.hdekker.appflow.AppFlow;
+import com.hdekker.domain.AppFlow;
 import com.hdekker.flowschedules.FlowScheduleEventListener.FlowScheduleEvent;
 import com.hdekker.flowschedules.FlowScheduleEventListener.FlowScheduleEventType;
 

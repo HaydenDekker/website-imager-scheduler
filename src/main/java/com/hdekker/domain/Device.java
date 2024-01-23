@@ -1,4 +1,4 @@
-package com.hdekker.device;
+package com.hdekker.domain;
 
 public class Device {
 

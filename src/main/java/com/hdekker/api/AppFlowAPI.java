@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hdekker.UseCase;
-import com.hdekker.appflow.AppFlow;
+import com.hdekker.domain.AppFlow;
 
 @RestController
 @RequestMapping()

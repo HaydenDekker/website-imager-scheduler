@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hdekker.FlowUseCase;
-import com.hdekker.flowschedules.DeviceAppflowAssignment;
+import com.hdekker.domain.DeviceAppflowAssignment;
 
 @RestController
 public class DeviceAppFlowAssignmentAPI {

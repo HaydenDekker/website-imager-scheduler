@@ -1,4 +1,4 @@
-package com.hdekker.appflow;
+package com.hdekker.domain;
 
 import java.time.OffsetTime;
 import java.util.List;

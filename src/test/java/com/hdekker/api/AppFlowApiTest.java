@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.hdekker.appflow.AppFlow;
+import com.hdekker.domain.AppFlow;
 
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 public class AppFlowApiTest {

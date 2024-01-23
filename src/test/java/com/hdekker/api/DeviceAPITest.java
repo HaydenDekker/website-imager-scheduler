@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.hdekker.device.Device;
+import com.hdekker.domain.Device;
 
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 public class DeviceAPITest {

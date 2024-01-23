@@ -6,8 +6,9 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.hdekker.appflow.AppFlow;
-import com.hdekker.appflow.AppFlow.WebsiteDisplayConfiguration;
+
+import com.hdekker.domain.AppFlow;
+import com.hdekker.domain.AppFlow.WebsiteDisplayConfiguration;
 import com.hdekker.flowschedules.FlowScheduleEventListener.FlowScheduleEvent;
 
 import reactor.core.publisher.Flux;

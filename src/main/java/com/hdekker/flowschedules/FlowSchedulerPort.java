@@ -2,7 +2,7 @@ package com.hdekker.flowschedules;
 
 import java.util.Optional;
 
-import com.hdekker.appflow.AppFlow;
+import com.hdekker.domain.AppFlow;
 import com.hdekker.flowschedules.FlowScheduleEventListener.FlowScheduleEvent;
 
 import reactor.core.publisher.Flux;

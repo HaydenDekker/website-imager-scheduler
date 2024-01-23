@@ -10,9 +10,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.hdekker.appflow.AppFlow;
-import com.hdekker.appflow.AppFlow.WebsiteDisplayConfiguration;
-import com.hdekker.device.Device;
+import com.hdekker.domain.AppFlow;
+import com.hdekker.domain.Device;
+import com.hdekker.domain.AppFlow.WebsiteDisplayConfiguration;
 import com.hdekker.flowschedules.FlowSchedulerPort.FlowSchedule;
 
 @SpringBootTest

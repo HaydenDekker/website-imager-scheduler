@@ -2,7 +2,7 @@ package com.hdekker.flowschedules;
 
 import java.util.function.Consumer;
 
-import com.hdekker.appflow.AppFlow;
+import com.hdekker.domain.AppFlow;
 
 public interface FlowScheduleEventListener {
 	

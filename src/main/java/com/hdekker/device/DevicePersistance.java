@@ -1,6 +1,6 @@
-package com.hdekker.database;
+package com.hdekker.device;
 
-import com.hdekker.device.Device;
+import com.hdekker.domain.Device;
 
 public interface DevicePersistance {
 	public Device save(Device device);
