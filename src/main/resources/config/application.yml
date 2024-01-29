@@ -1,0 +1,6 @@
+ftp:
+  users: 
+  - name: hayden
+    password: hayden
+    home-directory: src/test/resources/ftp/ftphome
+  port: 21

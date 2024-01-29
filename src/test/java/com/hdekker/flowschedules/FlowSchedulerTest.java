@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.hdekker.domain.AppFlow;
 import com.hdekker.domain.Device;
-import com.hdekker.domain.AppFlow.WebsiteDisplayConfiguration;
+import com.hdekker.domain.WebsiteDisplayConfiguration;
 import com.hdekker.flowschedules.FlowSchedulerPort.FlowSchedule;
 
 @SpringBootTest
@@ -24,7 +24,7 @@ public class FlowSchedulerTest {
 	@Test
 	public void canDetectEmptyFlow() {
 	
-		AppFlow flow = new AppFlow("Sweet", List.of());
+		AppFlow flow = new AppFlow(null, "Sweet", List.of());
 		flow.setId(1);
 		Optional<FlowSchedule> sch = appflowSchedulerPort.schedule(flow);
 		assertThat(sch.isEmpty()).isTrue();
@@ -37,7 +37,7 @@ public class FlowSchedulerTest {
 	@Test
 	public void whenWebsitesPresent_SchedulesFlow() {
 		
-		AppFlow flow = new AppFlow("Blog", List.of(
+		AppFlow flow = new AppFlow(null, "Blog", List.of(
 				new WebsiteDisplayConfiguration("http://hdekker.com", 30, List.of(OffsetTime.now().plusMinutes(1)))
 		));
 		Optional<FlowSchedule> sch = appflowSchedulerPort.schedule(flow);

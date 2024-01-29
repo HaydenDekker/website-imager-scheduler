@@ -20,7 +20,7 @@ public class TestDeviceFlowSupplierPort implements DeviceFlowSupplier {
 
 	@Override
 	public Mono<DeviceFlow> getDeviceFlow(Device flow) {
-		return Mono.just(new DeviceFlow(new AppFlow("FLOW1", List.of()), Map.of()));
+		return Mono.just(new DeviceFlow(new AppFlow(null, "FLOW1", List.of()), Map.of()));
 	}
 
 	

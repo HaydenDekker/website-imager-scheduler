@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.hdekker.domain.AppFlow;
-import com.hdekker.domain.AppFlow.WebsiteDisplayConfiguration;
+import com.hdekker.domain.WebsiteDisplayConfiguration;
 import com.hdekker.flowschedules.FlowScheduleEventListener.FlowScheduleEvent;
 
 import reactor.core.publisher.Flux;
@@ -28,7 +28,7 @@ public class FlowTimerTest {
 	
 	public static AppFlow testAppFlow(OffsetTime triggerTime) {
 		
-		return new AppFlow("TEST_FLOW", websiteDisplayConfigs(triggerTime));
+		return new AppFlow(null, "TEST_FLOW", websiteDisplayConfigs(triggerTime));
 
 	}
 

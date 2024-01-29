@@ -1,9 +1,21 @@
 package com.hdekker.domain;
 
+import org.hibernate.generator.Generator;
+
+import jakarta.annotation.Generated;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Device {
 
 	Integer id;
 	String name;
+	
+	public Device() {
+	}
 	
 	public Device(Integer id, String name) {
 		super();
@@ -11,6 +23,8 @@ public class Device {
 		this.name = name;
 	}
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getId() {
 		return id;
 	}

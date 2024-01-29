@@ -1,11 +1,22 @@
 package com.hdekker.views.devices;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.hdekker.api.DeviceAPI;
+import com.hdekker.device.DeviceLister;
+import com.hdekker.device.DevicePersistance;
+import com.hdekker.device.DeviceSupplier;
+import com.hdekker.domain.Device;
 import com.hdekker.views.MainLayout;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.router.AfterNavigationEvent;
+import com.vaadin.flow.router.AfterNavigationObserver;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
@@ -13,23 +24,39 @@ import com.vaadin.flow.router.RouteAlias;
 @PageTitle("Devices")
 @Route(value = "/home", layout = MainLayout.class)
 @RouteAlias(value = "", layout = MainLayout.class)
-public class DevicesView extends HorizontalLayout {
+public class DevicesView extends VerticalLayout implements AfterNavigationObserver {
 
-    private TextField name;
-    private Button sayHello;
+    Grid<Device> devices;
+    
+    @Autowired
+	DeviceAPI deviceAPI;
+    
+    Button add = new Button("add");
+    TextField name = new TextField("name");
 
     public DevicesView() {
-        name = new TextField("Your name");
-        sayHello = new Button("Say hello");
-        sayHello.addClickListener(e -> {
-            Notification.show("Hello " + name.getValue());
-        });
-        sayHello.addClickShortcut(Key.ENTER);
-
-        setMargin(true);
-        setVerticalComponentAlignment(Alignment.END, name, sayHello);
-
-        add(name, sayHello);
+        
+    	devices = new Grid<>();
+    	devices.addColumn(Device::getName)
+    		.setHeader("Name");
+    	add(devices);
+    	
+    	HorizontalLayout formLayout = new HorizontalLayout(add, name);
+    	formLayout.setAlignItems(Alignment.BASELINE);
+    	add(formLayout);
+    	add.addClickListener(b->{
+    		deviceAPI.createDevice(name.getValue());
+    		refreshItems();
+    	});
+    	
     }
+    private void refreshItems() {
+    	devices.setItems(deviceAPI.listAllDevices());
+    }
+
+	@Override
+	public void afterNavigation(AfterNavigationEvent event) {
+		refreshItems();
+	}
 
 }

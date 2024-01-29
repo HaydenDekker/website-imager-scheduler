@@ -1,7 +1,16 @@
 package com.hdekker.domain;
 
 import java.time.OffsetTime;
+import java.util.ArrayList;
 import java.util.List;
+
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 /**
  * The user has to state how and when they want
@@ -10,15 +19,21 @@ import java.util.List;
  * @author Hayden Dekker
  *
  */
+@Entity
 public class AppFlow {
 
 	Integer id;
 	String name;
-
-	public AppFlow(String name, List<WebsiteDisplayConfiguration> siteOrder) {
+	
+	public AppFlow() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public AppFlow(Integer id, String name, List<WebsiteDisplayConfiguration> siteOrder) {
 		super();
 		this.name = name;
 		this.siteOrder = siteOrder;
+		this.id = id;
 	}
 
 	public String getName() {
@@ -29,47 +44,10 @@ public class AppFlow {
 		this.name = name;
 	}
 
-	public static class WebsiteDisplayConfiguration{
-		
-		String website;
-		Integer displayDuration;
-		
-		// TODO could improve this concept
-		// potentially allow windows and frequency.
-		List<OffsetTime> websiteUpdateTime;
-		
-		public WebsiteDisplayConfiguration(
-				String website, 
-				Integer displayDuration,
-				List<OffsetTime> websiteUpdateTime) {
-			super();
-			this.website = website;
-			this.displayDuration = displayDuration;
-			this.websiteUpdateTime = websiteUpdateTime;
-		}
-		public String getWebsite() {
-			return website;
-		}
-		public void setWebsite(String website) {
-			this.website = website;
-		}
-		public Integer getDisplayDuration() {
-			return displayDuration;
-		}
-		public void setDisplayDuration(Integer displayDuration) {
-			this.displayDuration = displayDuration;
-		}
-		public List<OffsetTime> getWebsiteUpdateTime() {
-			return websiteUpdateTime;
-		}
-		public void setWebsiteUpdateTime(List<OffsetTime> websiteUpdateTime) {
-			this.websiteUpdateTime = websiteUpdateTime;
-		}
-		
-	}
-	
-	List<WebsiteDisplayConfiguration> siteOrder;
+	List<WebsiteDisplayConfiguration> siteOrder = new ArrayList<>();
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getId() {
 		return id;
 	}
@@ -78,6 +56,7 @@ public class AppFlow {
 		this.id = id;
 	}
 
+	@ElementCollection(fetch = FetchType.EAGER)
 	public List<WebsiteDisplayConfiguration> getSiteOrder() {
 		return siteOrder;
 	}

@@ -1,5 +1,11 @@
 package com.hdekker.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class DeviceAppflowAssignment {
 
 	Integer id;
@@ -12,6 +18,9 @@ public class DeviceAppflowAssignment {
 		this.deviceId = deviceId;
 		this.appFlowId = appFlowId;
 	}
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getAppFlowId() {
 		return appFlowId;
 	}

@@ -1,5 +1,8 @@
 package com.hdekker.views;
 
+import com.hdekker.views.appflow.AppFlowView;
+import com.hdekker.views.assignement.DeviceAppFlowAssignmentView;
+import com.hdekker.views.deviceflow.DeviceFlowView;
 import com.hdekker.views.devices.DevicesView;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
@@ -51,6 +54,10 @@ public class MainLayout extends AppLayout {
         SideNav nav = new SideNav();
 
         nav.addItem(new SideNavItem("Devices", DevicesView.class, LineAwesomeIcon.GLOBE_SOLID.create()));
+        nav.addItem(new SideNavItem("AppFlows", AppFlowView.class, LineAwesomeIcon.FLAG.create()));
+        nav.addItem(new SideNavItem("Assignment", DeviceAppFlowAssignmentView.class, LineAwesomeIcon.ADDRESS_BOOK.create()));
+        nav.addItem(new SideNavItem("DeviceFlows", DeviceFlowView.class, LineAwesomeIcon.DISCORD.create()));
+        
 
         return nav;
     }
