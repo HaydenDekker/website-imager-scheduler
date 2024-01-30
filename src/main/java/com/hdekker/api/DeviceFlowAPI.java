@@ -1,7 +1,9 @@
 package com.hdekker.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +19,9 @@ public class DeviceFlowAPI {
 	@Autowired
 	DeviceFlowSubscriberPort port;
 
-	@GetMapping(value = Endpoints.DEVICEFLOWS_SUBSCRIBE)
+	@PostMapping(
+			produces = MediaType.TEXT_EVENT_STREAM_VALUE,
+			value = Endpoints.DEVICEFLOWS_SUBSCRIBE)
 	public Flux<DeviceFlow> subscribe(
 			@RequestBody Device device){
 		return port.subscribe(device);

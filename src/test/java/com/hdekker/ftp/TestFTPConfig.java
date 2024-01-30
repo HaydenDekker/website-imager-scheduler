@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 @Configuration
 @ConfigurationProperties("ftp.test")
+@Profile("ftp")
 public class TestFTPConfig {
 	
 	@Value("${ftp.test.local-directory}")
