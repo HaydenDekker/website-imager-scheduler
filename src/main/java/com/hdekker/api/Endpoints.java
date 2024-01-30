@@ -15,6 +15,10 @@ public class Endpoints {
 	public static final String DEVICE_APPFLOWS = "/device/appflow";
 	public static final String DEVICE_APPFLOWS_CREATE = "/device/appflow/create";
 	public static final String APPFLOW_UPDATE = "/appflow/update";
+	public static final String DEVICE_APPFLOWS_LIST = "/device/appflow/list";
+	public static final String DEVICE_APPFLOWS_DELETE = "/device/appflow/delete";
+	
+	public static final String DEVICEFLOWS_SUBSCRIBE = "/deviceflow/subscribe";
 	
 	
 	

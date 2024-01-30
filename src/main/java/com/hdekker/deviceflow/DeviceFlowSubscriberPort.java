@@ -22,7 +22,7 @@ public class DeviceFlowSubscriberPort {
 	@Autowired
 	ImageRetrievalEventPort imageRetrievalEventPort;
 	
-	Flux<DeviceFlow> subscribe(Device device){
+	public Flux<DeviceFlow> subscribe(Device device){
 		
 		Many<DeviceFlow> subscriptionSink = Sinks.many()
 			.unicast()

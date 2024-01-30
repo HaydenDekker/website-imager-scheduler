@@ -23,7 +23,8 @@ public class FlowUseCaseTest {
 	@Test
 	public void whenFlowProvided_ExpectImageRetrievalInitiated() throws InterruptedException {
 		
-		DeviceAppflowAssignment assign = new DeviceAppflowAssignment(1, 2, 3);
+		DeviceAppflowAssignment assign = new DeviceAppflowAssignment(2, 3);
+		assign.setAppFlowId(1);
 		flowUseCase.scheduleFlow(assign);
 		Thread.sleep(2000);
 		assertThat(testImagePort.evts.size())

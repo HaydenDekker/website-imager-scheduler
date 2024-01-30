@@ -12,23 +12,26 @@ public class DeviceAppflowAssignment {
 	Integer deviceId;
 	Integer appFlowId;
 	
-	public DeviceAppflowAssignment(Integer id, Integer deviceId, Integer appFlowId) {
+	public DeviceAppflowAssignment() {
+	}
+	
+	public DeviceAppflowAssignment(Integer deviceId, Integer appFlowId) {
 		super();
-		this.id = id;
 		this.deviceId = deviceId;
 		this.appFlowId = appFlowId;
 	}
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	public Integer getAppFlowId() {
 		return appFlowId;
 	}
 	public void setAppFlowId(Integer appFlowId) {
 		this.appFlowId = appFlowId;
 	}
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getId() {
-		return id;
+		return id; 
 	}
 	public void setId(Integer id) {
 		this.id = id;

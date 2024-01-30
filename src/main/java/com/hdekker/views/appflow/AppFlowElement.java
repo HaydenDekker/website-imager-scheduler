@@ -37,7 +37,7 @@ public class AppFlowElement extends VerticalLayout{
 		HorizontalLayout overview = new HorizontalLayout();
 		overview.setWidthFull();
 		add(overview);
-		overview.add(new NativeLabel(name));
+		overview.add(new NativeLabel(name + " id: " + appFlow.getId()));
 		Button deleteButton = new Button("delete");
 		deleteButton.addClickListener(e->deleteConsumer.run());
 		

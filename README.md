@@ -24,7 +24,7 @@ User selects multiple websites and declares how often the display should toggle 
 User needs to connect display devices.
 
 - (Complete) API - Can create a device
-- API REST Adapter - Can delete a device
+- (Complete) API REST Adapter - Can delete a device
 - (Complete) Database Adapter - Persists devices
 
 ## Flow Use Case / Assign a device an AppFlow
@@ -32,8 +32,8 @@ User needs to connect display devices.
 User has to state what websites to display on which device. When user has provided this we can begin scraping websites according to the flow.
 
 - (Complete) API - Can create an appflow device assignment.
-- API REST Adapter - can delete an appflow.
-- Database Adapter - retrieves appflows.
+- (Complete) API REST Adapter - can delete an appflow.
+- (Complete) Database Adapter - retrieves appflows.
 - (Complete) Input Port - Schedules appflows to trigger event on timer.
 - (Complete) Output Port - Retrieve websites when triggered by scheduler timer.
 - Config - Reads assignments on startup and schedules current assignments.

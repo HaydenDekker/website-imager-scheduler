@@ -26,7 +26,17 @@ public class AppFlowDatabaseAdapter implements AppFlowSupplier, AppFlowPersitanc
 	@Override
 	public AppFlow getFlow(Integer id) {
 		
-		return appFlowRepository.findById(id).get();
+		Exception e = new Exception("Could not find appFlow with Id" + id);
+		
+		try {
+			return appFlowRepository.findById(id)
+					.orElseThrow(()->{
+						return e;
+					});
+		} catch (Exception e1) {
+			e1.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
