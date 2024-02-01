@@ -14,7 +14,6 @@ public class DeviceFlow {
 	
 	Integer id;
 	
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getId() {

@@ -1,4 +1,4 @@
-package com.hdekker.image;
+package com.hdekker.images;
 
 import java.time.OffsetTime;
 

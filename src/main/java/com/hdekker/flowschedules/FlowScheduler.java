@@ -1,7 +1,5 @@
 package com.hdekker.flowschedules;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -10,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hdekker.domain.AppFlow;
-import com.hdekker.flowschedules.FlowScheduleEventListener.FlowScheduleEvent;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Sinks;
@@ -32,7 +29,7 @@ public class FlowScheduler implements FlowSchedulerPort{
 			sink.asFlux();
 	
 	@Autowired
-	FlowScheduleEventListener[] listeners;
+	ImageRetrievalPort listeners;
 	
 	@Override
 	public Optional<FlowSchedule> schedule(AppFlow imageScheduleRequest) {
@@ -59,8 +56,7 @@ public class FlowScheduler implements FlowSchedulerPort{
 	private void connectEventListeners() {
 		
 		events.subscribe(evt->{
-			Arrays.asList(listeners)
-			.forEach(c->c.onEvent(evt));
+			listeners.onEvent(evt);
 		});
 	}
 

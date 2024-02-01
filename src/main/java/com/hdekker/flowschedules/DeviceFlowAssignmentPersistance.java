@@ -1,4 +1,4 @@
-package com.hdekker.deviceflow;
+package com.hdekker.flowschedules;
 
 import com.hdekker.domain.DeviceAppflowAssignment;
 

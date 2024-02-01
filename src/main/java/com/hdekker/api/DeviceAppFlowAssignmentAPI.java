@@ -15,10 +15,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hdekker.FlowUseCase;
 import com.hdekker.appflow.AppFlowPersitance;
-import com.hdekker.deviceflow.DeviceFlowAssignmentDelete;
-import com.hdekker.deviceflow.DeviceFlowAssignmentLister;
-import com.hdekker.deviceflow.DeviceFlowAssignmentPersistance;
 import com.hdekker.domain.DeviceAppflowAssignment;
+import com.hdekker.flowschedules.DeviceFlowAssignmentDelete;
+import com.hdekker.flowschedules.DeviceFlowAssignmentLister;
+import com.hdekker.flowschedules.DeviceFlowAssignmentPersistance;
 import com.vaadin.flow.data.provider.DataProvider;
 
 @RestController

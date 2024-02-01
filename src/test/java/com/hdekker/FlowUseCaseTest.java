@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 import com.hdekker.domain.DeviceAppflowAssignment;
-import com.hdekker.image.TestImagePort;
+import com.hdekker.images.TestImagePort;
 
 @SpringBootTest
 @ActiveProfiles(value = {"image-port"})

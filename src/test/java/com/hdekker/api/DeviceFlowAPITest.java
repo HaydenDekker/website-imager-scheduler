@@ -27,9 +27,9 @@ public class DeviceFlowAPITest {
 	WebClient wc;
 	
 	@Test
-	public void whenSubscriptionOccurs_ExpectAsyncResponsesGiven() throws InterruptedException {
+	public void whenSubscriptionOccurs_ExpectAsyncResponsesGiven(){
 		
-		//Flux<DeviceFlow> flux = 
+		Flux<DeviceFlow> flux = 
 				wc.post()
 			.uri(b->{
 				b.path(Endpoints.DEVICEFLOWS_SUBSCRIBE);
@@ -40,18 +40,14 @@ public class DeviceFlowAPITest {
 			.exchangeToFlux(cr->
 				cr.bodyToFlux(DeviceFlow.class)
 			)
-			.doOnNext(df-> log.info("received"))
-			.subscribe(c->{
-				log.info("yipp");
-			});
-		
-		Thread.sleep(100000);
-//		StepVerifier.create(flux)
-//			.expectSubscription()
-//			.thenAwait(Duration.ofSeconds(4))
-//			.expectNextCount(5)
-//			.thenCancel()
-//			.verify(Duration.ofSeconds(8));
+			.doOnNext(df-> log.info("received"));
+
+		StepVerifier.create(flux)
+			.expectSubscription()
+			.thenAwait(Duration.ofSeconds(4))
+			.expectNextCount(5)
+			.thenCancel()
+			.verify(Duration.ofSeconds(8));
 		
 	}
 	

@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hdekker.deviceflow.DeviceFlowAssignmentDelete;
-import com.hdekker.deviceflow.DeviceFlowAssignmentLister;
-import com.hdekker.deviceflow.DeviceFlowAssignmentPersistance;
 import com.hdekker.domain.DeviceAppflowAssignment;
+import com.hdekker.flowschedules.DeviceFlowAssignmentDelete;
+import com.hdekker.flowschedules.DeviceFlowAssignmentLister;
+import com.hdekker.flowschedules.DeviceFlowAssignmentPersistance;
 
 @Service
 public class DeviceFlowAssignmentDatabaseAdapter implements DeviceFlowAssignmentPersistance,

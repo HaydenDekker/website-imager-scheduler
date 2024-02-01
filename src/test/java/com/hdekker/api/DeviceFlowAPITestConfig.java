@@ -9,14 +9,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 
-import com.hdekker.deviceflow.DeviceFlowSupplier;
-import com.hdekker.domain.DeviceFlow;
-import com.hdekker.images.ImageRetrievalEventPort;
-import com.hdekker.images.ImageRetrievalEventPort.ImageRetrievalEvent;
+import com.hdekker.domain.ImageRetrievalEvent;
+import com.hdekker.flowschedules.ImageRetrievalEventPort;
 
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
-
 @Configuration
 @Profile("device-flow-api")
 public class DeviceFlowAPITestConfig {
@@ -30,15 +26,6 @@ public class DeviceFlowAPITestConfig {
 			Flux.interval(Duration.ofSeconds(1))
 			.subscribe(l->e.accept(new ImageRetrievalEvent()));
 			return ()->{};
-		};
-	}
-	
-	@Bean
-	@Primary
-	DeviceFlowSupplier deviceFlowSupplier() {
-		return (d) -> {
-			log.info("Sending mock device flow.");
-			return Mono.just(new DeviceFlow(null, null));
 		};
 	}
 

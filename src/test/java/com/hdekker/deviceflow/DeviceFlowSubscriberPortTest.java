@@ -1,5 +1,7 @@
 package com.hdekker.deviceflow;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.time.Duration;
 
 import org.junit.jupiter.api.Test;
@@ -66,6 +68,35 @@ public class DeviceFlowSubscriberPortTest {
 		.thenCancel()
 		.verify(Duration.ofSeconds(1));
 		
+		
+	}
+	
+	@Autowired
+	DeviceFlowSubscriberPortTestConfig testImageRetrievalEventPort;
+	
+	@Test
+	public void whenSubscriptionIsCancelled_ExpectImageEventPortListenerDeleted() {
+		
+		Device d = new Device(1, "DEVICE1");
+		
+		StepVerifier.withVirtualTime(()->{
+			Flux<DeviceFlow> deviceFlows = deviceFlowSubscriberPort.subscribe(d);
+			return deviceFlows;
+		})
+		.expectSubscription()
+		.thenAwait(Duration.ofSeconds(1))
+		.expectNextCount(2)
+		.thenCancel()
+		.verify(Duration.ofSeconds(4));
+		
+		assertThat(testImageRetrievalEventPort.hasRun)
+			.isEqualTo(true);
+		
+		
+	}
+	
+	@Test
+	public void ignoresIrrelevantEvents() {
 		
 	}
 }

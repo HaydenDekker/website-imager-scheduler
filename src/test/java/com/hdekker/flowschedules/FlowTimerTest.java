@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import com.hdekker.domain.AppFlow;
 import com.hdekker.domain.WebsiteDisplayConfiguration;
-import com.hdekker.flowschedules.FlowScheduleEventListener.FlowScheduleEvent;
+import com.hdekker.flowschedules.FlowSchedulerPort.FlowScheduleEvent;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Sinks;

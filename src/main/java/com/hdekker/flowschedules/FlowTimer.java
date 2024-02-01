@@ -7,8 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.hdekker.domain.AppFlow;
-import com.hdekker.flowschedules.FlowScheduleEventListener.FlowScheduleEvent;
-import com.hdekker.flowschedules.FlowScheduleEventListener.FlowScheduleEventType;
+import com.hdekker.flowschedules.FlowSchedulerPort.FlowScheduleEvent;
+import com.hdekker.flowschedules.FlowSchedulerPort.FlowScheduleEventType;
 
 import reactor.core.publisher.Mono;
 import reactor.core.publisher.Sinks.Many;

@@ -1,20 +1,16 @@
 package com.hdekker.images;
 
-import java.util.function.Consumer;
-
 import org.springframework.stereotype.Component;
 
+import com.hdekker.flowschedules.ImageRetrievalPort;
+import com.hdekker.domain.ImageRetrievalEvent;
+import com.hdekker.flowschedules.FlowSchedulerPort.FlowScheduleEvent;
+
 @Component
-public class WebsiteImagerAdapter implements ImageRetrievalPort, ImageRetrievalEventPort{
+public class WebsiteImagerAdapter implements ImageRetrievalPort{
 
 	@Override
-	public void onEvent(FlowScheduleEvent evt) {
-		
-	}
-
-	@Override
-	public Runnable listenForEvents(Consumer<ImageRetrievalEvent> e) {
-		// TODO Auto-generated method stub
+	public ImageRetrievalEvent onEvent(FlowScheduleEvent evt) {
 		return null;
 	}
 

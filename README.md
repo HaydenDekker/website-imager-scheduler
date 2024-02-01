@@ -37,16 +37,17 @@ User has to state what websites to display on which device. When user has provid
 - (Complete) Input Port - Schedules appflows to trigger event on timer.
 - (Complete) Output Port - Retrieve websites when triggered by scheduler timer.
 - Config - Reads assignments on startup and schedules current assignments.
-- Database Adapter - persists flow schedule events.
+
 
 ## Subscribe to website image stream
 
 A device listens for image/flow updates. A display schedule is returned on successful subscription.
 
-- Database Adapter - retrieves device flows and flow updates
+- Database Adapter - persists image retrieval events.
+- Database Adapter - retrieves appflows and image events for a device.
 - (Complete) Input port - listens for flow updates
-- API - Device can receive a display schedule.
-- API - Sends updates async relevant to subscirbed devices.
+- (Complete) API - Device can receive a display schedule.
+- (Complete) API - Sends updates async relevant to subscirbed devices.
 
 ## Download an image
 
