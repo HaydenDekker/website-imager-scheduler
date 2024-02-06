@@ -16,7 +16,6 @@ public class WebsiteDisplayConfiguration{
 	List<OffsetTime> websiteUpdateTime;
 	
 	public WebsiteDisplayConfiguration() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public WebsiteDisplayConfiguration(

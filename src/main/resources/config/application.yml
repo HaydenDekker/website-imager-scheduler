@@ -4,3 +4,11 @@ ftp:
     password: hayden
     home-directory: src/test/resources/ftp/ftphome
   port: 21
+  
+spring:
+  profiles:
+    active: mock_image_if
+# website_image_adapter
+
+mock-image-if:
+  static-image: test.png  

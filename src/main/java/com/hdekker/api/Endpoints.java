@@ -6,6 +6,7 @@ public class Endpoints {
 	public static final String DEVICE_CREATE = "/device/create";
 	public static final String DEVICE_CREATE_NAME = "/device/create/{name}";
 	public static final String DEVICE_LIST = "/device/list";
+	public static final String DEVICE_DELETE = "/device/delete";
 	
 	public static final String APPFLOW = "/appflow";
 	public static final String APPFLOW_CREATE = "/appflow/create";

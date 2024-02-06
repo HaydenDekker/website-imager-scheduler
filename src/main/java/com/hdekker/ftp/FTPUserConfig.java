@@ -2,12 +2,21 @@ package com.hdekker.ftp;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import jakarta.annotation.PostConstruct;
 
 @Configuration
 @ConfigurationProperties("ftp")
 public class FTPUserConfig {
+	
+	Logger log = LoggerFactory.getLogger(FTPUserConfig.class);
 	
 	public static class UserConfig{
 		String name;
@@ -42,6 +51,14 @@ public class FTPUserConfig {
 
 	public void setUsers(List<UserConfig> users) {
 		this.users = users;
-	}	
+	}
+	
+	@PostConstruct
+	public void log() throws JsonProcessingException {
+		
+		ObjectMapper om = new ObjectMapper();
+		log.info(om.writeValueAsString(users));
+		
+	}
 
 }

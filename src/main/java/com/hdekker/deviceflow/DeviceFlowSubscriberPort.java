@@ -55,7 +55,7 @@ public class DeviceFlowSubscriberPort {
 	
 	private Supplier<DeviceFlow> registerFlowSupplier(AppFlow appFlow){
 		return ()->{
-			eventRelevancePredicate = (ie) -> true;
+			eventRelevancePredicate = new SubscriptionEventRelevancePredicate(appFlow);
 			List<ImageRetrievalEvent> evts =
 					imageRetrivalEventSupplier.allEventsForFlow(appFlow);
 			DeviceFlow flow = buildFlow(evts, appFlow);
@@ -71,13 +71,13 @@ public class DeviceFlowSubscriberPort {
 		
 		fromDevice(device)
 			.subscribe(c-> {
-					c.ifPresentOrElse(af->{
-						appFlowSupplierFn = registerFlowSupplier(af);
-						subscriptionSink.tryEmitNext(appFlowSupplierFn.get());
-					}, ()->{
-						subscriptionSink.tryEmitComplete();
-					});	
-			}	
+				c.ifPresentOrElse(af->{
+					appFlowSupplierFn = registerFlowSupplier(af);
+					subscriptionSink.tryEmitNext(appFlowSupplierFn.get());
+				}, ()->{
+					subscriptionSink.tryEmitComplete();
+				});	
+			}
 		);
 		
 		

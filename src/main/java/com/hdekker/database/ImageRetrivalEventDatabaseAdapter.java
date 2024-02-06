@@ -1,0 +1,34 @@
+package com.hdekker.database;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.hdekker.deviceflow.ImageRetrivalEventPersister;
+import com.hdekker.deviceflow.ImageRetrivalEventSupplier;
+import com.hdekker.domain.AppFlow;
+import com.hdekker.domain.ImageRetrievalEvent;
+
+@Service
+public class ImageRetrivalEventDatabaseAdapter implements ImageRetrivalEventSupplier, ImageRetrivalEventPersister {
+
+	@Autowired
+	ImageRetrivalEventRepository imageRetrivalEventRepository;
+	
+	@Override
+	public ImageRetrievalEvent persist(ImageRetrievalEvent evt) {
+		return imageRetrivalEventRepository.save(evt);
+	}
+
+	@Override
+	public List<ImageRetrievalEvent> allEventsForFlow(AppFlow appFlow) {
+		return appFlow.getSiteOrder()
+					.stream()
+					.flatMap(wdc->imageRetrivalEventRepository.findAllByWebsiteName(wdc.getWebsite())
+							.stream())
+					.collect(Collectors.toList());
+	}
+
+}

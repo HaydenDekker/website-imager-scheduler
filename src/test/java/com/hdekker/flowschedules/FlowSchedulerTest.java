@@ -2,7 +2,10 @@ package com.hdekker.flowschedules;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.time.Duration;
+import java.time.LocalTime;
 import java.time.OffsetTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,7 +16,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.hdekker.domain.AppFlow;
 import com.hdekker.domain.Device;
 import com.hdekker.domain.WebsiteDisplayConfiguration;
-import com.hdekker.flowschedules.FlowSchedulerPort.FlowSchedule;
 
 @SpringBootTest
 public class FlowSchedulerTest {
@@ -26,9 +28,8 @@ public class FlowSchedulerTest {
 	
 		AppFlow flow = new AppFlow(null, "Sweet", List.of());
 		flow.setId(1);
-		Optional<FlowSchedule> sch = appflowSchedulerPort.schedule(flow);
+		Optional<FlowTimer> sch = appflowSchedulerPort.schedule(flow);
 		assertThat(sch.isEmpty()).isTrue();
-		
 	}
 	
 	@Autowired
@@ -37,17 +38,52 @@ public class FlowSchedulerTest {
 	@Test
 	public void whenWebsitesPresent_SchedulesFlow() {
 		
-		AppFlow flow = new AppFlow(null, "Blog", List.of(
+		AppFlow flow = new AppFlow(1, "Blog", List.of(
 				new WebsiteDisplayConfiguration("http://hdekker.com", 30, List.of(OffsetTime.now().plusMinutes(1)))
 		));
-		Optional<FlowSchedule> sch = appflowSchedulerPort.schedule(flow);
+		Optional<FlowTimer> sch = appflowSchedulerPort.schedule(flow);
 		assertThat(sch.isPresent()).isTrue();
 		assertThat(scheduler.schedulerState
 				.getFlowTimers()
-				.get(sch.get()))
+				.get(sch.get().flow()))
 			.isNotNull();
 	
 	}
-
 	
+	@Test
+	public void whenAppFlowUpdated_RefreshesTimers() {
+		
+		// Reset state.
+		scheduler.schedulerState.flowTimers = new HashMap<>();
+		
+		AppFlow flow1 = new AppFlow(1, "Blog", List.of(
+				new WebsiteDisplayConfiguration("http://hdekker.com", 30, List.of(OffsetTime.now().plusMinutes(1)))
+		));
+		
+		AppFlow flow1Updated = new AppFlow(1, "Blog", List.of(
+				new WebsiteDisplayConfiguration("http://hdekker.com", 20, List.of(
+						OffsetTime.now().plusMinutes(1), OffsetTime.now().plusMinutes(10)))
+		));
+		
+		Optional<FlowTimer> sch = appflowSchedulerPort.schedule(flow1);
+		assertThat(sch.isPresent()).isTrue();
+		assertThat(scheduler.schedulerState
+				.getFlowTimers()
+				.get(sch.get().flow()))
+			.isNotNull();
+		
+		sch = appflowSchedulerPort.schedule(flow1Updated);
+		assertThat(sch.isPresent()).isTrue();
+		assertThat(scheduler.schedulerState
+				.getFlowTimers()
+				.get(sch.get().flow()))
+			.isNotNull();
+		
+		assertThat(scheduler.schedulerState.flowTimers.size())
+			.isEqualTo(1);
+		
+		
+	}
+
+
 }

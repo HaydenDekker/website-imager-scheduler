@@ -26,7 +26,6 @@ public class AppFlow {
 	String name;
 	
 	public AppFlow() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public AppFlow(Integer id, String name, List<WebsiteDisplayConfiguration> siteOrder) {
@@ -63,6 +62,23 @@ public class AppFlow {
 
 	public void setSiteOrder(List<WebsiteDisplayConfiguration> siteOrder) {
 		this.siteOrder = siteOrder;
+	}
+
+	public Boolean hasWebsite(String websiteName) {
+		return this.siteOrder.stream()
+					.filter(wdc->wdc.getWebsite().equals(websiteName))
+					.findAny()
+					.isPresent();
+	}
+
+	public boolean hasWebsiteTimer() {
+		return this.getSiteOrder()
+				.stream()
+				.filter(wdc->{
+					return wdc.getWebsiteUpdateTime().size()!=0;
+				})
+				.findAny()
+				.isPresent();
 	}
 
 

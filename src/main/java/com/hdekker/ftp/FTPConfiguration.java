@@ -10,6 +10,8 @@ import org.apache.ftpserver.listener.ListenerFactory;
 import org.apache.ftpserver.usermanager.PropertiesUserManagerFactory;
 import org.apache.ftpserver.usermanager.impl.BaseUser;
 import org.apache.ftpserver.usermanager.impl.WritePermission;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -22,6 +24,8 @@ import jakarta.annotation.PreDestroy;
 @Configuration
 public class FTPConfiguration{
 	
+	Logger log = LoggerFactory.getLogger(FTPConfiguration.class);
+	
 	FtpServer server;
 	
 	@Autowired
@@ -32,20 +36,20 @@ public class FTPConfiguration{
 	
 	public List<BaseUser> convert(List<UserConfig> users){
 		return userConfig.getUsers()
-					.stream()
-					.map(uc-> {
-					
-						BaseUser user = new BaseUser();
-						user.setName(uc.getName());
-						user.setPassword(uc.getPassword());
-						user.setHomeDirectory(uc.getHomeDirectory());
-						WritePermission wp = new WritePermission();
-						user.setAuthorities(List.of(wp));
-						
-						return user;
-						
-					})
-					.collect(Collectors.toList());
+			.stream()
+			.map(uc-> {
+			
+				BaseUser user = new BaseUser();
+				user.setName(uc.getName());
+				user.setPassword(uc.getPassword());
+				user.setHomeDirectory(uc.getHomeDirectory());
+				WritePermission wp = new WritePermission();
+				user.setAuthorities(List.of(wp));
+				
+				return user;
+				
+			})
+			.collect(Collectors.toList());
 					
 	}
 
@@ -75,8 +79,8 @@ public class FTPConfiguration{
 		server = serverFactory.createServer();
 		try {
 			server.start();
-		} catch (FtpException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			log.error("Could not start ftp server.");
 		}
 		
 		return server;
@@ -85,6 +89,7 @@ public class FTPConfiguration{
 	
 	@PreDestroy
 	public void shutDown() {
+		log.info("Shutting down ftp.");
 		server.stop();
 	}
 	

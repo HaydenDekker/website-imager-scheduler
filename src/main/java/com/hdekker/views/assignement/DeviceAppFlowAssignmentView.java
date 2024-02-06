@@ -57,8 +57,11 @@ public class DeviceAppFlowAssignmentView extends VerticalLayout implements After
 		appFlowList.setItemLabelGenerator(a->a.getName());
 		
 		appFlows.addColumn(d->{
-			return deviceById.get(d.getDeviceId())
-					.getName();
+			return Optional.ofNullable(deviceById.get(d.getDeviceId()))
+					.map(dev->dev.getName())
+					.orElseGet(()->{
+						return "ERROR";
+					});
 		})
 		.setHeader("Device");
 		
@@ -72,7 +75,7 @@ public class DeviceAppFlowAssignmentView extends VerticalLayout implements After
 		
 		appFlows.addColumn(new ComponentRenderer<Button, DeviceAppflowAssignment>(Button::new, 
 				(b, d)->{
-					b.setIcon(new Icon(VaadinIcon.DEL));
+					b.setIcon(new Icon(VaadinIcon.CLOSE_CIRCLE));
 					b.addClickListener(del->{
 						deviceAppFlowAssignmentAPI.delete(d);
 						refresh();

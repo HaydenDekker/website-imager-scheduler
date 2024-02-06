@@ -1,51 +1,30 @@
 package com.hdekker.deviceflow;
 
-import java.time.Duration;
 import java.time.OffsetTime;
 import java.util.List;
 import java.util.Optional;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 
+import com.hdekker.TestProfiles;
 import com.hdekker.appflow.AppFlowSupplier;
 import com.hdekker.domain.AppFlow;
 import com.hdekker.domain.DeviceAppflowAssignment;
-import com.hdekker.domain.ImageRetrievalEvent;
 import com.hdekker.domain.WebsiteDisplayConfiguration;
-import com.hdekker.flowschedules.ImageRetrievalEventPort;
+import com.hdekker.flowschedules.ImageRetrievalEventPortMocks;
 
 import reactor.core.publisher.Mono;
 
 @Configuration
-@Profile(value = {"device-flow"})
 public class DeviceFlowSubscriberPortTestConfig {
-	
-	Logger log = LoggerFactory.getLogger(DeviceFlowSubscriberPortTestConfig.class);
 
-	Boolean hasRun = false;
 	
 	@Bean
 	@Primary
-	public ImageRetrievalEventPort imageRetrievalEventPort() {
-	
-		return (e) -> {
-			Mono.delay(Duration.ofMillis(500))
-				.subscribe(c-> e.accept(new ImageRetrievalEvent()));
-			
-			return ()->{
-				hasRun = true;
-				log.info("Deleter Run.");
-			};
-		};
-	}
-	
-	@Bean
-	@Primary
+	@Profile(value = {TestProfiles.DUMMY_DEVICE_FLOW_ASSIGNMENT_PROVIDER})
 	public DeviceFlowAssignmentSupplier fa() {
 		return (d)-> Mono.just(
 					Optional.of(new DeviceAppflowAssignment(3, 4)
@@ -54,6 +33,7 @@ public class DeviceFlowSubscriberPortTestConfig {
 	
 	@Bean
 	@Primary
+	@Profile(value = {TestProfiles.DUMMY_APPFLOW_SUPPLIER})
 	public AppFlowSupplier afs() {
 		return (i) -> new AppFlow(4, "APP_FLOW_1", getWebsites());
 	}
@@ -69,8 +49,9 @@ public class DeviceFlowSubscriberPortTestConfig {
 	
 	@Bean
 	@Primary
+	@Profile(value = {TestProfiles.MOCK_IMAGE_EVENT_SUPPLIER})
 	public ImageRetrivalEventSupplier ires() {
-		return (f)-> List.of(new ImageRetrievalEvent(f.getId(), "hdekker_com.png", "hdekker.com"));
+		return (f)-> List.of(ImageRetrievalEventPortMocks.TestEvent);
 	}
 
 }

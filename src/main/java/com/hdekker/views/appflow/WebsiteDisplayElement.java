@@ -1,5 +1,6 @@
 package com.hdekker.views.appflow;
 
+import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.time.OffsetTime;
 import java.time.ZoneOffset;
@@ -89,7 +90,7 @@ public class WebsiteDisplayElement extends VerticalLayout {
 		
 		addDt.addClickListener(b->{
 			config.getWebsiteUpdateTime().add(dtp.getValue()
-					.atOffset(ZoneOffset.UTC));
+					.atOffset(ZoneOffset.systemDefault().getRules().getOffset(Instant.now())));
 			updateConsumer.accept(config);
 		});
 		

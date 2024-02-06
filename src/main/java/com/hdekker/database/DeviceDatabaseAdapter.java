@@ -5,13 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hdekker.device.DeviceDeleter;
 import com.hdekker.device.DeviceLister;
 import com.hdekker.device.DevicePersistance;
 import com.hdekker.device.DeviceSupplier;
 import com.hdekker.domain.Device;
 
 @Service
-public class DeviceDatabaseAdapter implements DevicePersistance, DeviceSupplier, DeviceLister {
+public class DeviceDatabaseAdapter implements DevicePersistance, DeviceSupplier, DeviceLister, DeviceDeleter {
 
 	@Autowired
 	DeviceRepository deviceRepository;
@@ -29,6 +30,11 @@ public class DeviceDatabaseAdapter implements DevicePersistance, DeviceSupplier,
 	@Override
 	public List<Device> allDevices() {
 		return deviceRepository.findAll();
+	}
+
+	@Override
+	public void delete(Device device) {
+		deviceRepository.delete(device);
 	}
 
 }

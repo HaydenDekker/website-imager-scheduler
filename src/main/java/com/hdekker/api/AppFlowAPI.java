@@ -14,12 +14,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hdekker.UseCase;
 import com.hdekker.appflow.AppFlowLister;
 import com.hdekker.appflow.AppFlowPersitance;
 import com.hdekker.appflow.AppFlowSupplier;
 import com.hdekker.appflow.AppFlowDeleter;
 import com.hdekker.domain.AppFlow;
+import com.hdekker.flowschedules.FlowSchedulerPort;
 import com.vaadin.flow.data.provider.DataProvider;
 
 @RestController
@@ -37,6 +40,12 @@ public class AppFlowAPI {
 	
 	@Autowired
 	AppFlowPersitance appFlowPersitance;
+	
+	@Autowired
+	ObjectMapper om;
+	
+	@Autowired
+	FlowSchedulerPort scheduler;
 
 	@PostMapping(path = Endpoints.APPFLOW_CREATE_NAME)
 	public AppFlow create(
@@ -53,7 +62,17 @@ public class AppFlowAPI {
 	@PutMapping(value = Endpoints.APPFLOW_UPDATE)
 	public AppFlow update(
 			@RequestBody AppFlow update) {
-		return appFlowPersitance.save(update);
+		
+		try {
+			log.info(om.writeValueAsString(update));
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		
+		AppFlow flow = appFlowPersitance.save(update);
+		scheduler.schedule(flow);
+		
+		return flow;
 	}
 	
 	@Autowired

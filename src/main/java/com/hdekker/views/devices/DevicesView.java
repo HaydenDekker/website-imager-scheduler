@@ -11,10 +11,13 @@ import com.hdekker.views.MainLayout;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.router.AfterNavigationEvent;
 import com.vaadin.flow.router.AfterNavigationObserver;
 import com.vaadin.flow.router.PageTitle;
@@ -39,6 +42,15 @@ public class DevicesView extends VerticalLayout implements AfterNavigationObserv
     	devices = new Grid<>();
     	devices.addColumn(Device::getName)
     		.setHeader("Name");
+    	devices.addColumn(new ComponentRenderer<Button, Device>(Button::new, 
+    			(a,b)->{
+    				a.setIcon(new Icon(VaadinIcon.CLOSE_CIRCLE));
+    				a.addClickListener(c->{
+    					deviceAPI.delete(b);
+    					refreshItems();
+    				});
+    			}))
+    		.setHeader("Delete.");
     	add(devices);
     	
     	HorizontalLayout formLayout = new HorizontalLayout(add, name);

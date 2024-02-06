@@ -2,10 +2,13 @@ package com.hdekker.flowschedules;
 
 import java.util.Optional;
 
+import com.hdekker.UseCase;
 import com.hdekker.domain.AppFlow;
+import com.hdekker.domain.WebsiteDisplayConfiguration;
 
 import reactor.core.publisher.Flux;
 
+@UseCase(name = "Device Flow Scheduling.")
 public interface FlowSchedulerPort {
 	
 	public static enum FlowScheduleEventType{
@@ -16,26 +19,29 @@ public interface FlowSchedulerPort {
 		
 		final FlowScheduleEventType eventType;
 		final AppFlow flow;
+		final WebsiteDisplayConfiguration website;
 		
 		public FlowScheduleEventType getEventType() {
 			return eventType;
 		}
-		public AppFlow getRequest() {
-			return flow;
-		}
-		public FlowScheduleEvent(FlowScheduleEventType eventType, AppFlow request) {
+		public FlowScheduleEvent(
+				FlowScheduleEventType eventType, 
+				AppFlow request,
+				WebsiteDisplayConfiguration website) {
 			super();
 			this.eventType = eventType;
 			this.flow = request;
+			this.website = website;
+		}
+		public AppFlow getFlow() {
+			return flow;
+		}
+		public WebsiteDisplayConfiguration getWebsite() {
+			return website;
 		}
 		
-	}
-	
-	public static record FlowSchedule(
-			AppFlow flow,
-			Flux<FlowScheduleEvent> websiteImages, 
-			FlowTimer flowTimer) {}
-	
 		
-	public Optional<FlowSchedule> schedule(AppFlow imageScheduleRequest);
+	}
+		
+	public Optional<FlowTimer> schedule(AppFlow imageScheduleRequest);
 }

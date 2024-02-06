@@ -5,11 +5,14 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hdekker.device.DeviceDeleter;
 import com.hdekker.device.DeviceLister;
 import com.hdekker.device.DevicePersistance;
 import com.hdekker.device.DeviceSupplier;
@@ -28,6 +31,9 @@ public class DeviceAPI {
 	
 	@Autowired
 	DeviceLister deviceLister;
+	
+	@Autowired
+	DeviceDeleter deviceDeleter;
 
 	@PostMapping(value = Endpoints.DEVICE_CREATE_NAME)
 	public Device createDevice(
@@ -39,6 +45,12 @@ public class DeviceAPI {
 	@GetMapping(value = Endpoints.DEVICE_LIST)
 	public List<Device> listAllDevices(){
 		return deviceLister.allDevices();
+	}
+	
+	@DeleteMapping(value = Endpoints.DEVICE_DELETE)
+	public void delete(
+			@RequestBody Device device) {
+		deviceDeleter.delete(device);
 	}
 	
 }
