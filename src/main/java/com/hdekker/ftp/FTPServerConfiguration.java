@@ -22,9 +22,9 @@ import com.hdekker.ftp.FTPUserConfig.UserConfig;
 import jakarta.annotation.PreDestroy;
 
 @Configuration
-public class FTPConfiguration{
+public class FTPServerConfiguration{
 	
-	Logger log = LoggerFactory.getLogger(FTPConfiguration.class);
+	Logger log = LoggerFactory.getLogger(FTPServerConfiguration.class);
 	
 	FtpServer server;
 	

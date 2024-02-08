@@ -1,5 +1,7 @@
 package com.hdekker.ftp;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.io.BufferedReader;
 import java.io.Closeable;
 import java.io.FileInputStream;
@@ -14,6 +16,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.integration.IntegrationMessageHeaderAccessor;
 import org.springframework.integration.channel.DirectChannel;
 import org.springframework.integration.dsl.IntegrationFlow;
@@ -37,80 +41,25 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.github.javaparser.utils.Log;
 import com.hdekker.TestProfiles;
 
+import reactor.util.function.Tuple2;
+
 @SpringBootTest
 @ActiveProfiles({"ftp", TestProfiles.NO_IMAGE_RETRIVAL_PORT})
 public class FTPOutboundGatewayTest {
 	
 	Logger log = LoggerFactory.getLogger(FTPOutboundGatewayTest.class);
 	
-	public DefaultFtpSessionFactory sessionFactory() {
-	    DefaultFtpSessionFactory sessionFactory = new DefaultFtpSessionFactory();
-	    sessionFactory.setHost("localhost");
-	    sessionFactory.setPort(21);
-	    sessionFactory.setUsername("hayden");
-	    sessionFactory.setPassword("hayden");
-	    return sessionFactory;
-	}
-	
 	@Autowired
-	IntegrationFlowContext flowCtx;
-	
-	FtpSession closable;
+	FTPFileGetter ftpFileGetter;
 
 	@Test
-	public void whenGatewayTriggered_ExpectFileReturned() throws InterruptedException {
+	public void whenGatewayTriggered_ExpectFileReturned() throws InterruptedException, IOException {
 		
-		//FtpRemoteFileTemplate template = new FtpRemoteFileTemplate(sessionFactory());
-		DirectChannel channel = new DirectChannel();
+		Tuple2<String, InputStream> resp = ftpFileGetter.get("test.png")
+			.blockFirst();
 		
-//		IntegrationFlow.from(Ftp.outboundGateway(sessionFactory(), Command.GET, "payload")
-//					.options(AbstractRemoteFileOutboundGateway.Option.STREAM)
-//					.);
-		IntegrationFlow flow = IntegrationFlow.from(channel)
-			.handle(Ftp.outboundGateway(sessionFactory(), Command.GET, "payload")
-					.options(AbstractRemoteFileOutboundGateway.Option.STREAM)
-			)
-			.handle(message->{
-				ObjectMapper om = new ObjectMapper();
-				om.registerModule(new JavaTimeModule());
-				om.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
-				try {
-					log.info("received message " + om.writeValueAsString(message.getHeaders()) );
-				} catch (JsonProcessingException e1) {
-					e1.printStackTrace();
-				}
-				closable = (FtpSession) new IntegrationMessageHeaderAccessor(message).getCloseableResource();
-				InputStream is = (InputStream) message.getPayload();
-//			    try {
-//			    	//is.close();
-//			    } catch (IOException e) {
-//			        // Handle close error
-//			    }
-//			    
-			    log.info("closed");
-
-			})
-			.get();
-		
-		IntegrationFlowRegistration reg = flowCtx.registration(flow)
-			.register();
-		
-		reg.start();
-		
-		channel.send(MessageBuilder.withPayload("test.png").build());
-		
-		log.info("sleeping");
-		Thread.sleep(1000);
-		
-		channel.send(MessageBuilder.withPayload("shoud_fail.png").build());
-		
-		
-		reg.stop();
-		
-		if(closable.isOpen()) {
-			log.error("should be closed.");
-			//closable.close();
-		}
+		assertThat(resp.getT1()).isEqualTo("test.png");
+		assertThat(resp.getT2().available()).isGreaterThan(1);
 		
 	
 	}

@@ -1,5 +1,7 @@
 package com.hdekker.views.deviceflow;
 
+import java.io.InputStream;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +20,18 @@ import com.hdekker.api.DeviceFlowAPI;
 import com.hdekker.device.DeviceLister;
 import com.hdekker.domain.Device;
 import com.hdekker.domain.DeviceFlow;
+import com.hdekker.ftp.FTPFileGetter;
 import com.hdekker.views.MainLayout;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.combobox.ComboBox;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.AfterNavigationEvent;
 import com.vaadin.flow.router.AfterNavigationObserver;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.InputStreamFactory;
+import com.vaadin.flow.server.StreamResource;
 
 import reactor.core.Disposable;
 
@@ -84,30 +90,32 @@ public class DeviceFlowView extends VerticalLayout implements AfterNavigationObs
 		add(deviceFlowHolder);
 	}
 	
-	public DefaultFtpSessionFactory sessionFactory() {
-	    DefaultFtpSessionFactory sessionFactory = new DefaultFtpSessionFactory();
-	    sessionFactory.setHost("localhost");
-	    sessionFactory.setPort(21);
-	    sessionFactory.setUsername("hayden");
-	    sessionFactory.setPassword("hayden");
-	    return sessionFactory;
-	}
-	
 	@Autowired
-	IntegrationFlowContext ctx;
+	FTPFileGetter ftpFileGetter;
 	
 	private void getPhotos(DeviceFlow deviceFlow) {
 		
-		FtpRemoteFileTemplate template = new FtpRemoteFileTemplate(sessionFactory());
-		IntegrationFlowBuilder flow = IntegrationFlow.from(Ftp.inboundStreamingAdapter(template)
-				.remoteDirectory("/"))
-		.handle((p)->{
-			log.info("Received file " + p.getClass().toGenericString());
-		});
+		ftpFileGetter.getFlux()
+			.subscribe(c->{
+				deviceFlowHolder.getUI()
+					.get()
+					.access(()->{
+						log.info("Received Image");
+						StreamResource r = new StreamResource(c.getT1(), ()->c.getT2());
+						Image image = new Image(r, "");
+						deviceFlowHolder.add(image);
+						deviceFlowHolder.getUI()
+							.get()
+							.push();
+					});
+			});
 		
-		ctx.registration(flow.get())
-			.register()
-			.start();
+		deviceFlow.getFileNameByWebsite()
+			.keySet()
+			.forEach(c->{
+				ftpFileGetter.get(c);
+			});
+			
 		
 	}
 

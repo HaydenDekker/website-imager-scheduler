@@ -1,8 +1,8 @@
 # Website Imager Scheduler
 
-Simple concept to scrape and schedule website images for a remote display device. 
+Simple concept to scrape and schedule website images for a remote display device. It's kinda just a file scheduler but specific is always best first up.
 
-This is useful for a remote display that doesn't need much processing power at the edge and best serves slow moving information. An e-paper display would be a suitable type.
+I'm using it to update a remote display that doesn't need much processing power at the edge as is serves slow moving information, approx 10 times a day.
 
 The aggregate AppFlow groups multiple websites and defines how/when each should be displayed.
 
