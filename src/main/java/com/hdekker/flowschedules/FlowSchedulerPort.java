@@ -6,8 +6,6 @@ import com.hdekker.UseCase;
 import com.hdekker.domain.AppFlow;
 import com.hdekker.domain.WebsiteDisplayConfiguration;
 
-import reactor.core.publisher.Flux;
-
 @UseCase(name = "Device Flow Scheduling.")
 public interface FlowSchedulerPort {
 	

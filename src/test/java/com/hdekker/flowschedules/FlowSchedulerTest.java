@@ -2,8 +2,6 @@ package com.hdekker.flowschedules;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.time.Duration;
-import java.time.LocalTime;
 import java.time.OffsetTime;
 import java.util.HashMap;
 import java.util.List;
@@ -14,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.hdekker.domain.AppFlow;
-import com.hdekker.domain.Device;
 import com.hdekker.domain.WebsiteDisplayConfiguration;
 
 @SpringBootTest

@@ -7,9 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hdekker.api.AppFlowAPI;
-import com.hdekker.api.DeviceAPI;
 import com.hdekker.domain.AppFlow;
-import com.hdekker.domain.Device;
 import com.hdekker.views.MainLayout;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;

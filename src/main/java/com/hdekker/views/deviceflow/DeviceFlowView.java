@@ -1,26 +1,16 @@
 package com.hdekker.views.deviceflow;
 
-import java.io.InputStream;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.integration.dsl.IntegrationFlow;
-import org.springframework.integration.dsl.IntegrationFlowBuilder;
-import org.springframework.integration.dsl.context.IntegrationFlowContext;
-import org.springframework.integration.ftp.dsl.Ftp;
-import org.springframework.integration.ftp.session.DefaultFtpSessionFactory;
-import org.springframework.integration.ftp.session.FtpRemoteFileTemplate;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.hdekker.api.DeviceAPI;
 import com.hdekker.api.DeviceFlowAPI;
-import com.hdekker.device.DeviceLister;
 import com.hdekker.domain.Device;
 import com.hdekker.domain.DeviceFlow;
-import com.hdekker.ftp.FTPFileGetter;
+import com.hdekker.image.server.ftp.FTPFileGetter;
 import com.hdekker.views.MainLayout;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -30,7 +20,6 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.AfterNavigationEvent;
 import com.vaadin.flow.router.AfterNavigationObserver;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.server.InputStreamFactory;
 import com.vaadin.flow.server.StreamResource;
 
 import reactor.core.Disposable;

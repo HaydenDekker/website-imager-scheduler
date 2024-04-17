@@ -17,8 +17,6 @@ import com.hdekker.TestProfiles;
 import com.hdekker.deviceflow.DeviceFlowSubscriberPortTestConfig;
 import com.hdekker.domain.Device;
 import com.hdekker.domain.DeviceFlow;
-import com.hdekker.domain.ImageRetrievalEvent;
-
 import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 

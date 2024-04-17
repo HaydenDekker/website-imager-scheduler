@@ -1,6 +1,4 @@
-package com.hdekker.ftp;
-
-import java.util.List;
+package com.hdekker.image.server.ftp;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;

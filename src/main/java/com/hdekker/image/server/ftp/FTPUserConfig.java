@@ -1,4 +1,4 @@
-package com.hdekker.ftp;
+package com.hdekker.image.server.ftp;
 
 import java.util.List;
 

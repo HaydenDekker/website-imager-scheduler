@@ -3,17 +3,12 @@ package com.hdekker.views.devices;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hdekker.api.DeviceAPI;
-import com.hdekker.device.DeviceLister;
-import com.hdekker.device.DevicePersistance;
-import com.hdekker.device.DeviceSupplier;
 import com.hdekker.domain.Device;
 import com.hdekker.views.MainLayout;
-import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;

@@ -1,4 +1,4 @@
-package com.hdekker.ftp;
+package com.hdekker.image.server.ftp;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.hdekker.ftp.FTPUserConfig.UserConfig;
+import com.hdekker.image.server.ftp.FTPUserConfig.UserConfig;
 
 import jakarta.annotation.PreDestroy;
 

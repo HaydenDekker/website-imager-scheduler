@@ -24,7 +24,6 @@ import com.hdekker.appflow.AppFlowSupplier;
 import com.hdekker.appflow.AppFlowDeleter;
 import com.hdekker.domain.AppFlow;
 import com.hdekker.flowschedules.FlowSchedulerPort;
-import com.vaadin.flow.data.provider.DataProvider;
 
 @RestController
 @RequestMapping()

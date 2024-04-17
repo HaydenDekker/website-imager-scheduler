@@ -1,10 +1,7 @@
 package com.hdekker.deviceflow;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import java.util.function.Consumer;
-import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -22,7 +19,6 @@ import com.hdekker.domain.DeviceFlow;
 import com.hdekker.domain.ImageRetrievalEvent;
 import com.hdekker.flowschedules.ImageRetrievalEventPort;
 
-import reactor.core.Disposable;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.core.publisher.Sinks;

@@ -1,4 +1,4 @@
-package com.hdekker.images;
+package com.hdekker.image.retrieval;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

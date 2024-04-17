@@ -1,15 +1,11 @@
-package com.hdekker.ftp;
+package com.hdekker.image.server.ftp;
 
 import java.io.File;
 import java.time.Duration;
-import java.util.List;
-
-import org.apache.ftpserver.usermanager.impl.BaseUser;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.integration.dsl.IntegrationFlow;
 import org.springframework.integration.dsl.Pollers;
@@ -24,7 +20,6 @@ import org.springframework.retry.support.RetryTemplate;
 import org.springframework.test.context.ActiveProfiles;
 
 import com.hdekker.TestProfiles;
-
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
