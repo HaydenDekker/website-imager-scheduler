@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import com.hdekker.RuntimeProfiles;
 import com.hdekker.deviceflow.DeviceFlowAssignmentSupplier;
 import com.hdekker.domain.Device;
 import com.hdekker.domain.DeviceAppflowAssignment;
@@ -16,6 +18,7 @@ import com.hdekker.flowschedules.DeviceFlowAssignmentPersistance;
 import reactor.core.publisher.Mono;
 
 @Service
+@Profile(RuntimeProfiles.POSTGRESS)
 public class DeviceFlowAssignmentDatabaseAdapter implements DeviceFlowAssignmentPersistance,
 															DeviceFlowAssignmentLister,
 															DeviceFlowAssignmentDelete,

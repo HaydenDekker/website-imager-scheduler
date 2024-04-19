@@ -1,5 +1,7 @@
 package com.hdekker.image.png;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -20,7 +22,10 @@ public class ImagePNGConverterTest {
 		BufferedImage converted = ImagePNGConverter.convertImageToGrayscale(image);
 	    File outputFile = new File("src/test/resources/png-examples/grayscale_image.png");
 	    ImageIO.write(converted, "png", outputFile);
-		
+	    int type = converted.getType();
+	    assertThat(type)
+	    	.isEqualTo(BufferedImage.TYPE_BYTE_GRAY);
+	    
 	}
 	
 	@Test

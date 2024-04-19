@@ -15,6 +15,8 @@ public class ImagePNGConverter {
 	
 	public static BufferedImage convertImageToGrayscale(BufferedImage image) {
 
+		BufferedImage grayImage = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_BYTE_GRAY);
+		
 	    // Get image width and height
 	    int width = image.getWidth();
 	    int height = image.getHeight();
@@ -31,11 +33,11 @@ public class ImagePNGConverter {
 	        // Set new grayscale value for all RGB components (sets the pixel to grayscale)
 	        int newRGB = (rgb & 0xff000000) | (grayscale << 16) | (grayscale << 8) | grayscale;
 	        
-	        image.setRGB(x, y, newRGB);
+	        grayImage.setRGB(x, y, newRGB);
 	      }
 	    }
 	    
-	    return image;
+	    return grayImage;
 		
 	}
 

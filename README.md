@@ -60,6 +60,8 @@ A device listens for image/flow updates. A display schedule is returned on succe
 A device can download
 
 - (complete) FTP Server - Can connect, locate and download.
+- HTTP, Can retrieve image via HTTP.
+- Can read image from file system at configured location.
 
 ## Example Application
 

@@ -1,2 +1,5 @@
 test:
   endpoint: http://localhost:8080
+  
+image-server:
+  local-directory: src/test/resources/png-examples

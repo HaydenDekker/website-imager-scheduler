@@ -18,7 +18,7 @@ import com.hdekker.domain.ImageRetrievalEvent;
 @Component
 @Profile(TestProfiles.MOCK_IMAGE_EVENT_DB_ADAPTER)
 @Primary
-public class MockImageEventDatabaseAdapter implements ImageRetrivalEventPersister, ImageRetrivalEventSupplier {
+public class DummyImageEventDatabaseAdapter implements ImageRetrivalEventPersister, ImageRetrivalEventSupplier {
 
 	Map<String, ImageRetrievalEvent> imageRetrievalEvent = new HashMap<>();
 	

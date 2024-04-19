@@ -21,6 +21,9 @@ public class TestProfiles {
 	
 	// Image Event Supplier
 	public static final String MOCK_IMAGE_EVENT_SUPPLIER = "mies";
+	
+	// No Database Configuration
+	public static final String NO_DB_CONFIGURATION = "NO_DB";
 
 	
 }

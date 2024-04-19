@@ -3,8 +3,10 @@ package com.hdekker.database;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import com.hdekker.RuntimeProfiles;
 import com.hdekker.appflow.AppFlowDeleter;
 import com.hdekker.appflow.AppFlowLister;
 import com.hdekker.appflow.AppFlowPersitance;
@@ -12,6 +14,7 @@ import com.hdekker.appflow.AppFlowSupplier;
 import com.hdekker.domain.AppFlow;
 
 @Service
+@Profile(RuntimeProfiles.POSTGRESS)
 public class AppFlowDatabaseAdapter implements AppFlowSupplier, AppFlowPersitance, AppFlowLister, AppFlowDeleter {
 	
 	@Autowired

@@ -7,8 +7,8 @@ ftp:
   
 spring:
   profiles:
-    active: mock_image_if
+    active: mock_image_if,postgres
 # website_image_adapter
 
 mock-image-if:
-  static-image: test.png  
+  static-image: test.png
