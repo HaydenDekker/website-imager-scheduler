@@ -15,6 +15,8 @@ import com.hdekker.deviceflow.ImageRetrivalEventSupplier;
 import com.hdekker.domain.AppFlow;
 import com.hdekker.domain.ImageRetrievalEvent;
 
+import reactor.core.publisher.Mono;
+
 @Component
 @Profile(TestProfiles.MOCK_IMAGE_EVENT_DB_ADAPTER)
 @Primary
@@ -28,9 +30,9 @@ public class DummyImageEventDatabaseAdapter implements ImageRetrivalEventPersist
 	}
 
 	@Override
-	public ImageRetrievalEvent persist(ImageRetrievalEvent evt) {
+	public Mono<ImageRetrievalEvent> persist(ImageRetrievalEvent evt) {
 		imageRetrievalEvent.put(evt.getFileName(), evt);
-		return evt;
+		return Mono.just(evt);
 	}
 
 }

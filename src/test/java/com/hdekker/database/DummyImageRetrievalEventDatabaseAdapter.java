@@ -12,15 +12,16 @@ import com.hdekker.deviceflow.ImageRetrivalEventSupplier;
 import com.hdekker.domain.AppFlow;
 import com.hdekker.domain.ImageRetrievalEvent;
 
+import reactor.core.publisher.Mono;
+
 @Component
 @Profile(TestProfiles.NO_DB_CONFIGURATION)
 @Primary
 public class DummyImageRetrievalEventDatabaseAdapter implements ImageRetrivalEventSupplier, ImageRetrivalEventPersister {
 
 	@Override
-	public ImageRetrievalEvent persist(ImageRetrievalEvent evt) {
-		// TODO Auto-generated method stub
-		return null;
+	public Mono<ImageRetrievalEvent> persist(ImageRetrievalEvent evt) {
+		return Mono.empty();
 	}
 
 	@Override

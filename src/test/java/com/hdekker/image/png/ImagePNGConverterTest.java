@@ -5,13 +5,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-
 import javax.imageio.ImageIO;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
+import com.hdekker.TestProfiles;
+import com.hdekker.domain.ImageRetrievalEvent;
+import com.hdekker.image.server.png.ImagePNGConverter;
+import reactor.core.publisher.Mono;
+
+@SpringBootTest
+@ActiveProfiles({TestProfiles.NO_DB_CONFIGURATION, TestProfiles.MOCK_IMAGE_RETRIEVAL_PORT, "image_conv"})
 public class ImagePNGConverterTest {
 	
 	@Test
@@ -29,9 +36,28 @@ public class ImagePNGConverterTest {
 	}
 	
 	@Test
-	public void whenImageRetrievalEventReceived_ExpectConfigurationForPNGConversionCanBeFound() {
+	public void whenFileNameProvided_ExpectGrayscaleInserted() {
 		
+		String testFilename = "happydays.png";
+		String converted = ImagePNGConverter.insertGrayscaleIntoFileName(testFilename);
+		assertThat(converted)
+			.isEqualTo("happydays_grayscale.png");
+	}
+	
+	@Autowired
+	ImagePNGConverter imagePNGConverter;
+	
+	@Test
+	public void whenImageRetrievalEventPersisted_ExpectImageIsConvertedToGrayscale() {
+		
+		ImageRetrievalEvent evt = new ImageRetrievalEvent("image.png", "image.com.au");
+		Mono<ImageRetrievalEvent> result = imagePNGConverter.process(evt);
+		result.block();
+		File grayscaleImage = new File("src/test/resources/png-examples/png-conv-evt-test/image_grayscale.png");
+		assertThat(grayscaleImage.canRead())
+			.isTrue();
 		
 	}
+	
 
 }

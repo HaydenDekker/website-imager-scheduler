@@ -1,0 +1,2 @@
+image-server:
+  local-directory: src/test/resources/png-examples/png-conv-evt-test

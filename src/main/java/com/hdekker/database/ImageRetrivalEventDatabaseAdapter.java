@@ -13,6 +13,8 @@ import com.hdekker.deviceflow.ImageRetrivalEventSupplier;
 import com.hdekker.domain.AppFlow;
 import com.hdekker.domain.ImageRetrievalEvent;
 
+import reactor.core.publisher.Mono;
+
 @Service
 @Profile(RuntimeProfiles.POSTGRESS)
 public class ImageRetrivalEventDatabaseAdapter implements ImageRetrivalEventSupplier, ImageRetrivalEventPersister {
@@ -21,8 +23,11 @@ public class ImageRetrivalEventDatabaseAdapter implements ImageRetrivalEventSupp
 	ImageRetrivalEventRepository imageRetrivalEventRepository;
 	
 	@Override
-	public ImageRetrievalEvent persist(ImageRetrievalEvent evt) {
-		return imageRetrivalEventRepository.save(evt);
+	public Mono<ImageRetrievalEvent> persist(ImageRetrievalEvent evt) {
+		return Mono.create(s->{
+			s.success(imageRetrivalEventRepository.save(evt));
+		});
+				
 	}
 
 	@Override
