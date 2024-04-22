@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
+import com.hdekker.RuntimeProfiles;
 import com.hdekker.TestProfiles;
 import com.hdekker.domain.Device;
 import com.hdekker.domain.DeviceFlow;
@@ -28,6 +29,7 @@ import reactor.test.StepVerifier;
  */
 @SpringBootTest
 @ActiveProfiles({ 
+		RuntimeProfiles.POSTGRESS,
 		TestProfiles.NO_IMAGE_RETRIVAL_PORT,
 		TestProfiles.MOCK_DELAYED_500ms_IMAGE_EVENT_PORT, 
 		TestProfiles.DUMMY_DEVICE_FLOW_ASSIGNMENT_PROVIDER, 

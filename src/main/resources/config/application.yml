@@ -8,6 +8,17 @@ ftp:
 spring:
   profiles:
     active: mock_image_if,postgres
+  mustache:
+    check-template-location: false
+  jpa:
+    defer-datasource-initialization: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate.ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: mysecretpassword
+    driver-class-name: org.postgresql.Driver
 # website_image_adapter
 
 mock-image-if:

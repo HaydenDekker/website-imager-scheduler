@@ -60,8 +60,13 @@ A device listens for image/flow updates. A display schedule is returned on succe
 A device can download
 
 - (complete) FTP Server - Can connect, locate and download.
-- HTTP, Can retrieve image via HTTP.
-- Can read image from file system at configured location.
+- (complete) HTTP, Can retrieve image via HTTP.
+- (complete) Can read image from file system at configured location.
+
+## Convert images for specific devices
+
+- (complete) Can convert PNG image to grayscale.
+- (complete) Can automatically convert images on receipt of image to filesystem.
 
 ## Example Application
 

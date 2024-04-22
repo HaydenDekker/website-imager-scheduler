@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
+import com.hdekker.RuntimeProfiles;
 import com.hdekker.domain.AppFlow;
 import com.hdekker.domain.ImageRetrievalEvent;
 import com.hdekker.domain.WebsiteDisplayConfiguration;
@@ -17,7 +18,7 @@ import com.hdekker.flowschedules.FlowSchedulerPort.FlowScheduleEvent;
 import com.hdekker.flowschedules.FlowSchedulerPort.FlowScheduleEventType;
 
 @SpringBootTest
-@ActiveProfiles("mock_image_if")
+@ActiveProfiles({"mock_image_if", RuntimeProfiles.POSTGRESS})
 public class MockWebSiteImageAdapterTest {
 	
 	@Autowired

@@ -29,7 +29,10 @@ public class ImageAPI {
 		log.info("Function: Retrieving image - " + imageName);
 		    
 		byte[] imageOpt = imageServer.getPNGImage(imageName)
-				.orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
+				.orElseThrow(()-> {	
+					log.warn("Could not find image " + imageName);
+					return new ResponseStatusException(HttpStatus.NOT_FOUND);
+				});
 		
 	    // Set headers for content type and potential caching
 	    HttpHeaders headers = new HttpHeaders();

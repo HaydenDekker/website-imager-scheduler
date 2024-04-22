@@ -13,6 +13,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import com.hdekker.RuntimeProfiles;
 import com.hdekker.TestProfiles;
 import com.hdekker.deviceflow.DeviceFlowSubscriberPortTestConfig;
 import com.hdekker.domain.Device;
@@ -22,6 +23,7 @@ import reactor.test.StepVerifier;
 
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @ActiveProfiles({ 
+	RuntimeProfiles.POSTGRESS,
 	TestProfiles.NO_IMAGE_RETRIVAL_PORT,
 	TestProfiles.MOCK_IMAGE_EVENT_DB_ADAPTER,
 	TestProfiles.MOCK_FLUX_1s_IMAGE_EVENT_PORT,
