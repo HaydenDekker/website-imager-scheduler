@@ -10,15 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.hdekker.RuntimeProfiles;
-import com.hdekker.TestProfiles;
 import com.hdekker.domain.AppFlow;
 
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
-@ActiveProfiles({RuntimeProfiles.POSTGRESS, TestProfiles.MOCK_IMAGE_RETRIEVAL_PORT})
 @DirtiesContext
 public class AppFlowApiTest {
 

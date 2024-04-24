@@ -18,7 +18,7 @@ import com.hdekker.image.server.png.ImagePNGConverter;
 import reactor.core.publisher.Mono;
 
 @SpringBootTest
-@ActiveProfiles({TestProfiles.NO_DB_CONFIGURATION, TestProfiles.MOCK_IMAGE_RETRIEVAL_PORT, "image_conv"})
+@ActiveProfiles({"image_conv", TestProfiles.MOCK_IMAGE_RETRIEVAL_PORT})
 public class ImagePNGConverterTest {
 	
 	@Test

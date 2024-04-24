@@ -9,3 +9,6 @@ ftp:
     port: 21
     user-name: hayden
     password: hayden
+    
+image-server:
+  local-directory: src/test/resources/ftp/ftphome

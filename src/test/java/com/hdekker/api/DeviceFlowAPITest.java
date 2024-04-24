@@ -1,7 +1,6 @@
 package com.hdekker.api;
 
 import java.time.Duration;
-
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,22 +12,15 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.hdekker.RuntimeProfiles;
 import com.hdekker.TestProfiles;
-import com.hdekker.deviceflow.DeviceFlowSubscriberPortTestConfig;
 import com.hdekker.domain.Device;
 import com.hdekker.domain.DeviceFlow;
 import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
-@ActiveProfiles({ 
-	RuntimeProfiles.POSTGRESS,
-	TestProfiles.NO_IMAGE_RETRIVAL_PORT,
-	TestProfiles.MOCK_IMAGE_EVENT_DB_ADAPTER,
-	TestProfiles.MOCK_FLUX_1s_IMAGE_EVENT_PORT,
-	TestProfiles.DUMMY_DEVICE_FLOW_ASSIGNMENT_PROVIDER, 
-	TestProfiles.DUMMY_APPFLOW_SUPPLIER})
+@ActiveProfiles({
+	TestProfiles.DEVICE_FLOW_SUBSCRIBER_API})
 @DirtiesContext()
 public class DeviceFlowAPITest {
 	
@@ -36,10 +28,7 @@ public class DeviceFlowAPITest {
 	
 	@Autowired
 	WebClient wc;
-	
-	@Autowired
-	DeviceFlowSubscriberPortTestConfig config;
-	
+
 	@Test
 	public void whenSubscriptionOccurs_ExpectAsyncResponsesGiven(){
 		

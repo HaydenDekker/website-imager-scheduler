@@ -18,7 +18,7 @@ import com.hdekker.flowschedules.FlowSchedulerPort.FlowScheduleEvent;
 import com.hdekker.flowschedules.FlowSchedulerPort.FlowScheduleEventType;
 
 @SpringBootTest
-@ActiveProfiles({"mock_image_if", RuntimeProfiles.POSTGRESS})
+@ActiveProfiles({RuntimeProfiles.MOCK_IMAGE_RETRIEVAL_PORT})
 public class MockWebSiteImageAdapterTest {
 	
 	@Autowired

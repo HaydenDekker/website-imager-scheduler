@@ -12,13 +12,12 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.hdekker.RuntimeProfiles;
 import com.hdekker.TestProfiles;
 import com.hdekker.domain.DeviceAppflowAssignment;
 
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @DirtiesContext
-@ActiveProfiles({RuntimeProfiles.POSTGRESS, TestProfiles.MOCK_IMAGE_RETRIEVAL_PORT})
+@ActiveProfiles(TestProfiles.MOCK_IMAGE_RETRIEVAL_PORT)
 public class DeviceAppFlowAssignmentAPITest { 
 
 	@Autowired

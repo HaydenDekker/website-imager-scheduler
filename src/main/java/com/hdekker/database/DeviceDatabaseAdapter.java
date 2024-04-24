@@ -3,10 +3,8 @@ package com.hdekker.database;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
-import com.hdekker.RuntimeProfiles;
 import com.hdekker.device.DeviceDeleter;
 import com.hdekker.device.DeviceLister;
 import com.hdekker.device.DevicePersistance;
@@ -14,7 +12,6 @@ import com.hdekker.device.DeviceSupplier;
 import com.hdekker.domain.Device;
 
 @Service
-@Profile(RuntimeProfiles.POSTGRESS)
 public class DeviceDatabaseAdapter implements DevicePersistance, DeviceSupplier, DeviceLister, DeviceDeleter {
 
 	@Autowired

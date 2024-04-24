@@ -3,9 +3,11 @@ package com.hdekker.image.retrieval;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import com.hdekker.RuntimeProfiles;
 import com.hdekker.domain.ImageRetrievalEvent;
 import com.hdekker.flowschedules.FlowSchedulerPort.FlowScheduleEvent;
 import com.hdekker.flowschedules.ImageRetrievalPort;
@@ -22,7 +24,8 @@ import jakarta.annotation.PostConstruct;
  *
  */
 @Service
-@Profile("mock_image_if")
+@Profile(RuntimeProfiles.MOCK_IMAGE_RETRIEVAL_PORT)
+@Primary
 public class MockWebsiteImageAdapter implements ImageRetrievalPort {
 
 	Logger log = LoggerFactory.getLogger(MockWebsiteImageAdapter.class);

@@ -12,13 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import com.hdekker.RuntimeProfiles;
 import com.hdekker.TestProfiles;
 import com.hdekker.domain.AppFlow;
 import com.hdekker.domain.WebsiteDisplayConfiguration;
 
 @SpringBootTest
-@ActiveProfiles({RuntimeProfiles.POSTGRESS, TestProfiles.MOCK_IMAGE_RETRIEVAL_PORT})
+@ActiveProfiles(TestProfiles.MOCK_IMAGE_RETRIEVAL_PORT)
 public class FlowSchedulerTest {
 
 	@Autowired

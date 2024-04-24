@@ -1,11 +1,7 @@
 package com.hdekker;
 
 public class RuntimeProfiles {
-
-	/***
-	 * Configured the postgress database adapters.
-	 * 
-	 */
-	public static final String POSTGRESS = "postgress";
 	
+	public static final String MOCK_IMAGE_RETRIEVAL_PORT = "mock_image_retrieval_port";
+
 }

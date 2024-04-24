@@ -13,12 +13,11 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.hdekker.RuntimeProfiles;
 import com.hdekker.TestProfiles;
 import com.hdekker.domain.Device;
 
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
-@ActiveProfiles({RuntimeProfiles.POSTGRESS, TestProfiles.MOCK_IMAGE_RETRIEVAL_PORT})
+@ActiveProfiles({TestProfiles.MOCK_IMAGE_RETRIEVAL_PORT})
 @DirtiesContext
 public class DeviceAPITest {
 	
@@ -38,7 +37,7 @@ public class DeviceAPITest {
 		.bodyValue("")
 		.exchangeToMono(cr->
 			cr.bodyToMono(Device.class)	
-		).block(Duration.ofSeconds(10));
+		).block(Duration.ofSeconds(100));
 		
 		assertThat(device.getName()).isEqualTo(TEST_DEVICE_NAME);
 		

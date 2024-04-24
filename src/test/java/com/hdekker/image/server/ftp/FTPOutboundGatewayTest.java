@@ -11,12 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import com.hdekker.RuntimeProfiles;
 import com.hdekker.TestProfiles;
 import reactor.util.function.Tuple2;
 
 @SpringBootTest
-@ActiveProfiles({"ftp", TestProfiles.NO_IMAGE_RETRIVAL_PORT, RuntimeProfiles.POSTGRESS})
+@ActiveProfiles({"ftp", TestProfiles.NO_IMAGE_RETRIVAL_PORT})
 public class FTPOutboundGatewayTest {
 	
 	Logger log = LoggerFactory.getLogger(FTPOutboundGatewayTest.class);
