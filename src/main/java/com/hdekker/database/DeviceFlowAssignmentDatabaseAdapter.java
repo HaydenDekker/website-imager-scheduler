@@ -24,6 +24,7 @@ public class DeviceFlowAssignmentDatabaseAdapter implements DeviceFlowAssignment
 	@Autowired
 	DeviceFlowAssignementRepository repository;
 	
+
 	@Override
 	public DeviceAppflowAssignment save(DeviceAppflowAssignment assignment) {
 		return repository.save(assignment); 

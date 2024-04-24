@@ -17,6 +17,7 @@ import org.springframework.integration.handler.advice.RequestHandlerRetryAdvice;
 import org.springframework.messaging.Message;
 import org.springframework.retry.policy.SimpleRetryPolicy;
 import org.springframework.retry.support.RetryTemplate;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 
 import com.hdekker.TestProfiles;
@@ -26,6 +27,7 @@ import reactor.test.StepVerifier;
 @SpringBootTest
 @ActiveProfiles({"ftp",
 		TestProfiles.NO_IMAGE_RETRIVAL_PORT})
+@DirtiesContext
 public class FTPServerTest {
 	
 	Logger log = LoggerFactory.getLogger(FTPServerTest.class);

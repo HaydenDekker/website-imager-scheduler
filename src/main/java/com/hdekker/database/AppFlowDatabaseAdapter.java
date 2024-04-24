@@ -19,7 +19,6 @@ public class AppFlowDatabaseAdapter implements AppFlowSupplier, AppFlowPersitanc
 
 	@Override
 	public AppFlow save(AppFlow flow) {
-		
 		return appFlowRepository.save(flow);
 	}
 

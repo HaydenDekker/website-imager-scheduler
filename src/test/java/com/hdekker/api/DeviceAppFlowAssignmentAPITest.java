@@ -27,7 +27,6 @@ public class DeviceAppFlowAssignmentAPITest {
 	public void canCreateAssignment() {
 		
 		DeviceAppflowAssignment assignment = new DeviceAppflowAssignment(4, 5);
-		assignment.setId(1);
 		
 		DeviceAppflowAssignment a = wc.post()
 				.uri(b->{

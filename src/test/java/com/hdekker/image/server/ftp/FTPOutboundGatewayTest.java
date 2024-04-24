@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 
 import com.hdekker.TestProfiles;
@@ -16,6 +17,7 @@ import reactor.util.function.Tuple2;
 
 @SpringBootTest
 @ActiveProfiles({"ftp", TestProfiles.NO_IMAGE_RETRIVAL_PORT})
+@DirtiesContext
 public class FTPOutboundGatewayTest {
 	
 	Logger log = LoggerFactory.getLogger(FTPOutboundGatewayTest.class);
