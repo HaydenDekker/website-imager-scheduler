@@ -32,6 +32,9 @@ public class FTPOutboundGatewayTest {
 			.blockFirst();
 		
 		assertThat(resp.getT1()).isEqualTo("test.png");
+		
+		log.info("Input stream received has " + resp.getT2().available() + " bytes.");
+		
 		assertThat(resp.getT2().available()).isGreaterThan(1);
 		
 	
