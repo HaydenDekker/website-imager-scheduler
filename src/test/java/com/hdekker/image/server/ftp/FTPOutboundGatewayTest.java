@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.Duration;
+
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +15,8 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 
 import com.hdekker.TestProfiles;
+
+import reactor.core.publisher.Flux;
 import reactor.util.function.Tuple2;
 
 @SpringBootTest
@@ -32,6 +36,22 @@ public class FTPOutboundGatewayTest {
 			.blockFirst();
 		
 		assertThat(resp.getT1()).isEqualTo("test.png");
+		
+		// On a slower build machine the input stream
+		// wasn't ready with bytes before the assertion
+		// that bytes > 0 is made.
+		Flux.interval(Duration.ofMillis(10))
+			.map(l->{
+				try {
+					return resp.getT2().available();
+				} catch (IOException e) {
+					throw new RuntimeException(e);
+				}
+			})
+			.takeUntil(i->i>0)
+			.timeout(Duration.ofSeconds(1))
+			.blockLast();
+		
 		
 		log.info("Input stream received has " + resp.getT2().available() + " bytes.");
 		
