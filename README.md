@@ -76,6 +76,11 @@ It demonstrates the full functionality above.
 ### Mock Image Interface for Integration Testing
 Use the profile "mock_image_if" and set the properties to instruct the image interface to respond to all requests using a static image.
 
+# Deploy
+
+## AWS 
+Codebuild - Create a pipeline. Use the buildspec.yml provided in the root to build this application.
+
 
 
 

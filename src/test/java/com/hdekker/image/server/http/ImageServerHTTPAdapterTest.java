@@ -47,7 +47,9 @@ public class ImageServerHTTPAdapterTest {
 			.exchangeToMono(cr -> {
 			
 				try {
-					log.info("" + om.writeValueAsString(cr.headers().asHttpHeaders()));
+					log.info("" + om.writeValueAsString(
+							cr.headers().asHttpHeaders())
+					);
 				} catch (JsonProcessingException e) {
 					
 					e.printStackTrace();

@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto17
+    commands:
+      - cp ./settings.xml /root/.m2/settings.xml
+  build:
+    commands:
+      - echo Build started on `date`
+      - mvn package -Pproduction
+  post_build:
+    commands:
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - target/*
+    - appspec.yml
+    - scripts/start.sh
+    - scripts/before.sh
+    - scripts/afterinstall.sh
+    - scripts/validate.sh
+    - scripts/stop.sh
+  discard-paths: yes
