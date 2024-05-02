@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 
 import com.hdekker.RuntimeProfiles;
@@ -19,6 +20,7 @@ import com.hdekker.flowschedules.FlowSchedulerPort.FlowScheduleEventType;
 
 @SpringBootTest
 @ActiveProfiles({RuntimeProfiles.MOCK_IMAGE_RETRIEVAL_PORT})
+@DirtiesContext
 public class MockWebSiteImageAdapterTest {
 	
 	@Autowired

@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 
 import com.hdekker.TestProfiles;
@@ -19,6 +20,7 @@ import reactor.core.publisher.Mono;
 
 @SpringBootTest
 @ActiveProfiles({"image_conv", TestProfiles.MOCK_IMAGE_RETRIEVAL_PORT})
+@DirtiesContext
 public class ImagePNGConverterTest {
 	
 	@Test
