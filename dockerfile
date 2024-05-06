@@ -5,7 +5,7 @@ FROM eclipse-temurin:17-slim
 WORKDIR /app
 
 # Copy your JAR file to the working directory
-COPY your-app.jar app.jar
+COPY install.jar app.jar
 
 # Expose the port your application uses (replace 8080 with the actual port)
 EXPOSE 8080
