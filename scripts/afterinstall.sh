@@ -2,7 +2,9 @@ echo "after install"
 
 pwd 
 
-jar_count=$(find . -type f -name "*.jar" | wc -l)
+echo "Searching for jar in $CODEBUILD_BUILD_ARTIFACT_DIRECTORY"
+
+jar_count=$(find $CODEBUILD_BUILD_ARTIFACT_DIRECTORY -type f -name "*.jar" | wc -l)
 
 if [[ $jar_count -eq 1 ]]; then
   echo "Exactly one jar file found."
