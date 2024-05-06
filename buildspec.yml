@@ -21,4 +21,5 @@ artifacts:
     - scripts/afterinstall.sh
     - scripts/validate.sh
     - scripts/stop.sh
+    - src/test/resources/png-examples/test.png
   discard-paths: yes
