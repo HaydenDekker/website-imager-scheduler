@@ -1,5 +1,5 @@
 # Use a slim Java 17 base image (replace with desired tag if needed)
-FROM eclipse-temurin:17-slim
+FROM arm64v8/eclipse-temurin:17-jre
 
 # Set a working directory for the application
 WORKDIR /app

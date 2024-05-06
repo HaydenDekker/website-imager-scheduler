@@ -6,7 +6,7 @@ echo "Checking file exists at $startScriptPath"
 
 if [[ -f "$startScriptPath" ]]; then
   echo "Env start script found."
-  . startScriptPath
+  . $startScriptPath
 else
   echo "Env start script not found on server. Server should be a managed env."
 fi
