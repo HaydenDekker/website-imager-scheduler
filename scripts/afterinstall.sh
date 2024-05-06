@@ -2,9 +2,11 @@ echo "after install"
 
 pwd 
 
-echo "Searching for jar in $CODEBUILD_BUILD_ARTIFACT_DIRECTORY"
+dirCurrent=${BASH_SOURCE%/*}
 
-jar_count=$(find $CODEBUILD_BUILD_ARTIFACT_DIRECTORY -type f -name "*.jar" | wc -l)
+echo "Searching for jar in $dirCurrent"
+
+jar_count=$(find $dirCurrent -type f -name "*.jar" | wc -l)
 
 if [[ $jar_count -eq 1 ]]; then
   echo "Exactly one jar file found."
@@ -16,6 +18,8 @@ else
   fi
   exit 1
 fi
+
+cd $dirCurrent
 
 cp *.jar install.jar
 
