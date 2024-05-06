@@ -1,9 +1,5 @@
 version: 0.0
 os: linux
-files:
-  - source: /
-    destination: /usr/local/bin
-file_exists_behavior: OVERWRITE
 hooks:
   ApplicationStop:
     - location: stop.sh
