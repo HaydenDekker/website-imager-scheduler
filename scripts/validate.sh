@@ -1,14 +1,12 @@
-#!/bin/bash
-
 echo "validate"
 
-container_name="website-image-scheduler"
-matching_containers=$(docker-compose ps -q --filter="name=${container_name}" | grep -E "^/${container_name}$")
+scriptValidate="/etc/envman/validate.sh"
 
-if [[ ! -z "$matching_containers" ]]; then
-  echo "Found containers with name '${container_name}':"
-  docker-compose ps | grep "${container_name}"
+echo "Checking file exists at $scriptValidate"
+
+if [[ -f "$scriptValidate" ]]; then
+  echo "Env validate script found."
+  . scriptValidate website-image-scheduler
 else
-  echo "No containers found with name '${container_name}'"
-  exit 1
+  echo "Env start script not found on server. Server should be a managed env."
 fi

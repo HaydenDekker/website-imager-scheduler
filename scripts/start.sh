@@ -1,26 +1,12 @@
 echo "start"
 
-servicesName=$HOSTNAME
+startScriptPath="/etc/envman/start.sh"
 
-if [[ -z "$servicesName" ]]; then
-  echo "No Environment Services Name set for ENV Variable ENV_SERVICES_NAME"
-  exit 1
+echo "Checking file exists at $startScriptPath"
+
+if [[ -f "$startScriptPath" ]]; then
+  echo "Env start script found."
+  . startScriptPath
 else
-  echo "Environment Services Folder Name is: $servicesName"
+  echo "Env start script not found on server. Server should be a managed env."
 fi
-
-composeFilePath="/etc/envman/orchestration/$servicesName/"
-
-echo "Checking file exists at $composeFilePath"
-
-if [[ -f "$composeFilePath" ]]; then
-  echo "Docker comopse found for $servicesName."
-else
-  echo "docker-compose.yml found for $servicesName."
-fi
-
-composeDir="${composeFilePath%/*}"
-
-cd composeDir
-
-docker-compose up
