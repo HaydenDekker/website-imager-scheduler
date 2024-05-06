@@ -1,3 +1,3 @@
 echo "after install"
 
-docker build -t website-image-scheduler
+docker build -t website-image-scheduler .
