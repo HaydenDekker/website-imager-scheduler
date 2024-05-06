@@ -14,6 +14,7 @@ phases:
 artifacts:
   files:
     - target/*
+    - dockerfile
     - appspec.yml
     - scripts/start.sh
     - scripts/before.sh
